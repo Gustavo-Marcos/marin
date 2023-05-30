@@ -1,7 +1,7 @@
 data:
   #train_urls:
   #validation_urls:
-  cache_dir: "gs://levanter-data/tokenized/pile/"
+  cache_dir: "gs://levanter-data/tokenized/pile-old/"
   tokenizer: "EleutherAI/gpt-neox-20b"
 model:
   hidden_dim: 4096

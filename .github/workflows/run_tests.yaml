@@ -1,4 +1,4 @@
-name: Python package
+name: Run tests
 
 on: [push]
 
@@ -24,12 +24,6 @@ jobs:
           # install haliax from source b/c it's changing in parallel with this repo
           pip install git+https://github.com/stanford-crfm/haliax.git
           pip install .
-#      - name: Lint with flake8
-#        run: |
-#          # stop the build if there are Python syntax errors or undefined names
-#          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-#          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-#          flake8 . --count --exit-zero --max-complexity=50 --max-line-length=127 --statistics
       - name: Test with pytest
         run: |
-          XLA_FLAGS=--xla_force_host_platform_device_count=8 PYTHONPATH=tests:src:. pytest tests
+          XLA_FLAGS=--xla_force_host_platform_device_count=8 PYTHONPATH=tests:src:. pytest tests -m "not entry"

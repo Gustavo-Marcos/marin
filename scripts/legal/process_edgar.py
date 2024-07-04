@@ -57,7 +57,7 @@ def convert_to_dolma(input_file_path, output_file_path):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Example script to convert fineweb html to markdown.")
+    parser = argparse.ArgumentParser(description="Script to convert edgar data to dolma format.")
     # As a reminder all the processing in this function will be done on the head node. We should try
     # to keep number of jobs (started using ray job submit command) to minimum while trying to use tasks(ray.remote
     # function) as much as possible. For reference, fw uses only 1 job to process a complete dump which is about

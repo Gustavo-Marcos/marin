@@ -1,5 +1,5 @@
 """
-Anything which is not inside ray.remote function will be executed on the h
+Anything which is not inside ray.remote function will be executed on the head node, so keep it to minimum.
 path: scripts/legal/process_edgar.py
 Inputs: raw parquet files, Output: jsonl.gz files in dolma format
 

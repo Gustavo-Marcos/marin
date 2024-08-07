@@ -1,0 +1,11 @@
+output_path: gs://marin-data/scratch/rohithk
+experiment: experiment-2
+data_cfgs:
+  - path: gs://marin-data/scratch/rohithk
+    dataset: reddit
+    doc_experiment: experiment-0
+    attr_experiment: experiment-1
+    labels:
+      - great
+    sampling_rate: 1.0
+    seed: 0

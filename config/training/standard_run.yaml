@@ -1,9 +1,6 @@
 # This is the base configuration for a "normal" levanter run.
 # It is designed to run on a single dataset from scratch
 data:
-  # cache_dir needs to be set to the directory where the tokenized data is stored
-  #  cache_dir: "gs://marin-data/tokenized/OLMo-1B/dolma-v1.7"
-#  tokenizer: "mistralai/Mistral-7B-v0.1"
   tokenizer: "meta-llama/Llama-2-7b-hf"
   shuffle_buffer_size: 50000
   stop_strategy: restart

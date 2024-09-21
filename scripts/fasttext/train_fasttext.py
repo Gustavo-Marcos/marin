@@ -1,5 +1,5 @@
 """
-run_training.py
+train_fasttext.py
 
 Training script for fastText quality classifiers.
 """
@@ -7,63 +7,51 @@ Training script for fastText quality classifiers.
 from dataclasses import dataclass, field
 
 import draccus
-import ray
+import os
 
+from marin.utils import fsspec_rm
+from marin.classifiers.utils import create_label_attribute, attributes_to_dataset
 from marin.classifiers.fasttext.training import train_model
-from marin.classifiers.utils import create_label_attribute, attribute_to_dataset
 
 
 @dataclass
-class MainConfig:
+class TrainFasttextClassifierConfig:
     """
     Configuration class for main process.
 
     Attributes:
-        output_base_path (str): Base path for output data (i.e., gs://{BUCKET}).
-        experiment (str): Experiment name.
-        pos_doc_path (str): Path to experiment with positive examples (i.e., gs://{BUCKET}/documents/../$EXPERIMENT).
-        neg_doc_path (str): Path to experiment with negative examples (i.e., gs://{BUCKET}/documents/../$EXPERIMENT).
+        output_path (str): Path for output data (i.e., gs://$BUCKET/classifiers/$EXPERIMENT).
+        pos_doc_path (str): Path to experiment with positive examples (i.e., gs://$BUCKET/documents/../$EXPERIMENT).
+        neg_doc_path (str): Path to experiment with negative examples (i.e., gs://$BUCKET/documents/../$EXPERIMENT).
         pos_sampling_rate (float): Fraction of positive examples to include the training dataset.
         neg_sampling_rate (float): Fraction of negative examples to include the training dataset.
-        training_args (dict): Arguments for the fastText training process (see fastText docs for the full list of options).
+        fasttext_args (dict): Arguments for the fastText training process (see fastText docs for the full list of options).
         seed (int): Seed for random number generator to ensure reproducibility.
-        val_split (float): Fraction of data to be used for validation.
+        val_frac (float): Fraction of data to be used for validation.
         memory (int): Amount of memory allocated for remote training process (in GB).
-        num_cpus (int): Number of CPUs allocated for remote training process.
     """
 
+    output_path: str
     pos_doc_path: str
     neg_doc_path: str = None
     pos_sampling_rate: float = 1.0
     neg_sampling_rate: float = 1.0
-    training_args: dict = field(default_factory=dict)
+    fasttext_args: dict = field(default_factory=dict)
     seed: int = 0
-    val_split: float = 0.1
+    val_frac: float = 0.1
     memory: int = 1
-    num_cpus: int = 4
-    output_base_path: str = "gs://marin-us-central2"
-    experiment: str = None
 
 
-def get_attr_path(doc_path: str, attr_experiment: str) -> str:
-    """
-    Utility function to get the attribute experiment path for a given document experiment path.
-    """
-    base_path, experiment_path = doc_path.split("/documents/")
-    doc_experiment = experiment_path.split("/")[-1]
+@draccus.wrap()
+def main(cfg: TrainFasttextClassifierConfig):
+    ray.init()
 
-    return f"{base_path}/attributes/{experiment_path.split(doc_experiment)[0]}{attr_experiment}"
-
-
-@ray.remote
-def main_ray(cfg: MainConfig):
-    pos_attr_path = get_attr_path(cfg.pos_doc_path, cfg.experiment)
-    neg_attr_path = get_attr_path(cfg.neg_doc_path, cfg.experiment)
+    pos_attr_path = os.path.join(cfg.output_path, "tmp", "positives")
+    neg_attr_path = os.path.join(cfg.output_path, "tmp", "negatives")
 
     create_label_attribute(input_doc_path=cfg.pos_doc_path, output_attr_path=pos_attr_path, label="hq")
-    attribute_to_dataset(
-        output_base_path=cfg.output_base_path,
-        experiment=cfg.experiment,
+    attributes_to_dataset(
+        output_path=cfg.output_path,
         doc_path=cfg.pos_doc_path,
         attr_path=pos_attr_path,
         sampling_rate=cfg.pos_sampling_rate,
@@ -71,9 +59,8 @@ def main_ray(cfg: MainConfig):
     )
 
     create_label_attribute(input_doc_path=cfg.neg_doc_path, output_attr_path=neg_attr_path, label="lq")
-    attribute_to_dataset(
-        output_base_path=cfg.output_base_path,
-        experiment=cfg.experiment,
+    attributes_to_dataset(
+        output_path=cfg.output_path,
         doc_path=cfg.neg_doc_path,
         attr_path=neg_attr_path,
         sampling_rate=cfg.neg_sampling_rate,
@@ -81,20 +68,16 @@ def main_ray(cfg: MainConfig):
     )
 
     train_model(
-        base_path=cfg.output_base_path,
-        experiment=cfg.experiment,
-        training_args=cfg.training_args,
+        input_path=f"{cfg.output_path}/data",
+        output_path=cfg.output_path,
         seed=cfg.seed,
-        val_split=cfg.val_split,
+        val_frac=cfg.val_frac,
         memory_req=cfg.memory,
-        num_cpus=cfg.num_cpus,
+        **cfg.fasttext_args,
     )
 
-
-@draccus.wrap()
-def main(cfg: MainConfig):
-    ray.init()
-    ray.get(main_ray.remote(cfg))
+    fsspec_rm(pos_attr_path)
+    fsspec_rm(neg_attr_path)
 
 
 if __name__ == "__main__":

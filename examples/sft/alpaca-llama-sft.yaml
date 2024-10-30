@@ -19,7 +19,7 @@ trainer:
     type: wandb
     project: "levanter-sft"
     tags: ["llama", "sft"]
-  num_train_steps: 1218
+  num_train_steps: 750000
   train_batch_size: 64
   tensor_parallel_axes: ["mlp", "heads"]
   fsdp_axis: "embed"

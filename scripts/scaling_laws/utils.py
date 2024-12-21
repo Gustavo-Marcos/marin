@@ -3,10 +3,12 @@ import numpy as np
 import jax.numpy as jnp
 from scipy.special import huber
 
+
 def chinchilla_loss(params, y, x):
     predicted = inv_exp_predict(params, x)
 
     return jnp.mean(huber(y - predicted))
+
 
 def inv_exp_predict(params, x):
     (log_constant, log_scale, exponent) = params
@@ -16,12 +18,14 @@ def inv_exp_predict(params, x):
     predicted = log_constant + jnp.log1p(jnp.exp(z - log_constant))
     return predicted
 
+
 def mse_loss(params, y, x):
     # ignore the scale
     (log_constant, _, exponent) = params
     targets = log_constant + jnp.einsum("ij,j->i", x, exponent)
-    
+
     return jnp.mean((y - targets) ** 2)
+
 
 def fit_power_law(x, y, delta=1e-3, use_log_space=False, initial_guess=None):
     """
@@ -52,7 +56,7 @@ def fit_power_law(x, y, delta=1e-3, use_log_space=False, initial_guess=None):
             A, B = np.exp(log_A), np.exp(log_B)
         else:
             A, B, alpha, beta, E = params
-        return A / (N ** alpha) + B / (D ** beta) + E
+        return A / (N**alpha) + B / (D**beta) + E
 
     def objective(params):
         # huber loss on residuals
@@ -71,7 +75,7 @@ def fit_power_law(x, y, delta=1e-3, use_log_space=False, initial_guess=None):
         bounds = [(0, None), (0, None), (0, None), (0, None), (0, None)]  # A, B, alpha, beta, E >= 0
 
     # optimize the objective function
-    result = minimize(objective, initial_guess, method='L-BFGS-B', bounds=bounds, epsilon=1e-7)
+    result = minimize(objective, initial_guess, method="L-BFGS-B", bounds=bounds, epsilon=1e-7)
 
     print(result)
 

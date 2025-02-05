@@ -83,18 +83,6 @@ available_node_types:
 
             # Set Source Image =>> Ubuntu 22.04 Base VM
             sourceImage: projects/ubuntu-os-cloud/global/images/family/ubuntu-2204-lts
-  tpu_worker:
-    max_workers: 1024
-    min_workers: 0
-    node_config:
-      acceleratorType: v6e-4
-      runtimeVersion: v2-alpha-tpuv6e
-      schedulingConfig:
-        preemptible: true
-    resources:
-      CPU: 120
-      TPU: 4
-
   tpu_slice_v6e_8:
     max_workers: 1024
     min_workers: 2
@@ -106,63 +94,3 @@ available_node_types:
     resources:
       CPU: 120
       TPU: 8
-
-  tpu_slice_v6e_16:
-    max_workers: 1024
-    min_workers: 0
-    node_config:
-      acceleratorType: v6e-16
-      runtimeVersion: v2-alpha-tpuv6e
-      schedulingConfig:
-        preemptible: true
-    resources:
-      CPU: 120
-      TPU: 4
-
-  tpu_slice_v6e_32:
-    max_workers: 1024
-    min_workers: 0
-    node_config:
-      acceleratorType: v6e-32
-      runtimeVersion: v2-alpha-tpuv6e
-      schedulingConfig:
-        preemptible: true
-    resources:
-      CPU: 120
-      TPU: 4
-
-  tpu_slice_v6e_64:
-    max_workers: 1024
-    min_workers: 0
-    node_config:
-      acceleratorType: v6e-64
-      runtimeVersion: v2-alpha-tpuv6e
-      schedulingConfig:
-        preemptible: true
-    resources:
-      CPU: 120
-      TPU: 4
-
-  tpu_slice_v6e_128:
-    max_workers: 1024
-    min_workers: 0
-    node_config:
-      acceleratorType: v6e-128
-      runtimeVersion: v2-alpha-tpuv6e
-      schedulingConfig:
-        preemptible: true
-    resources:
-      CPU: 120
-      TPU: 4
-
-  tpu_slice_v6e_256:
-    max_workers: 1024
-    min_workers: 0
-    node_config:
-      acceleratorType: v6e-256
-      runtimeVersion: v2-alpha-tpuv6e
-      schedulingConfig:
-        preemptible: true
-    resources:
-      CPU: 120
-      TPU: 4

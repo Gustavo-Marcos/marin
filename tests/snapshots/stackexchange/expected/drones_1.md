@@ -9,8 +9,8 @@ I've tried hooking up to the TBS agent to switch the channels and that works as 
 Here's a video to show what's going on: https://photos.app.goo.gl/p6Dt7A11EWjBS3Vz9
 
 # Answer
-The crossfire OSD has a “my VTX” setting on the transmitter settings pane: I had “XF TX LITE \> MY VTX \> ACTIVE” set to “Yes” and the channels it would flip back to were set there. It seems the “MY VTX” section overrides whatever the unify is trying to do. Once I set that to “No” the changes I made stuck.
 > 6 votes
+The crossfire OSD has a “my VTX” setting on the transmitter settings pane: I had “XF TX LITE \> MY VTX \> ACTIVE” set to “Yes” and the channels it would flip back to were set there. It seems the “MY VTX” section overrides whatever the unify is trying to do. Once I set that to “No” the changes I made stuck.
 
 ---
 Tags: crossfire, team-blacksheep, crossfire-lite, unify-pro32-hv, crossfire-nano

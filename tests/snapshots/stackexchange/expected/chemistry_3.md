@@ -7,6 +7,7 @@ I was intrigued; I went and looked up the MSDS for this chemical to see what the
 Now, here's the question. While this stuff has some serious "synergy" when it comes to being an oxidizing agent (it's a better oxidizer than pure oxygen, loads better than pure chlorine, better even than pure fluorine gas), the NFPA flammability rating of the chemical is 0. This, despite reports from those who originally studied it that the chemical is hypergolic with every known fuel substance, and most things you wouldn't consider fuel (like asbestos, sand, concrete, brick, earth, test engineers). The resulting reaction certainly looks like fire; intense heat, bright light, sparks, smoke, the works. So, if chlorine trifluoride doesn't "burn" by the NFPA's definition, what *is* the NFPA's definition of "burning"?
 
 # Answer
+> 28 votes
 You have found one of biggest flaws in the NFPA "Fire Diamond". The NFPA rates the flammability of the compound **as a fuel**. ClF<sub>3</sub> is not a fuel. It is an oxidant. ClF<sub>3</sub> is playing the role that oxygen normally does. It causes fuels (reductants) to burn by oxidizing them rapidly and exothermically. Oxidants are incapable of creating fire in absence of fuel regardless of temperature. Fires started by ClF<sub>3</sub> continue to burn after being smothered because oxygen isn't necessary to continue the oxidation process. And since ClF<sub>3</sub> is denser than air, it gets trapped under the sand. Many other powerful oxidants, like fluorine and perchloric acid, have low flammability ratings. Oxygen also has a flammability rating of zero. They do not burn; they cause other compounds to burn.
 
 The scale for the flammability rating has to do with flash point, which is the temperature at which a fuel forms an ignitable mixture with air. Since ClF<sub>3</sub> doesn't burn (isn't a fuel), and doesn't react with air (N<sub>2</sub>, O<sub>2</sub>, CO<sub>2</sub>, Ar, etc, which are all inert towards oxidation), it does not have a measurable flash point. 
@@ -18,7 +19,6 @@ The danger posed by ClF<sub>3</sub> is summed in the yellow (reactivity or stabi
 The white triangle will have appropriate hazard information. For ClF<sub>3</sub>, it has the symbols **OXY**, which means it is a strong oxidizer, and ~~W~~, which means it reacts with water. 
 
 I have not found the specific reaction that ClF<sub>3</sub> undergoes with sand (mostly SiO<sub>2</sub>). I expect that it involves ${\ce{SiO2 -\> SiF}}\_6^{2-}$, except that this half reaction is not an oxidation.
-> 28 votes
 
 ---
 Tags: redox, safety

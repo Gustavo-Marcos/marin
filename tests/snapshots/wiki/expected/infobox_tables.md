@@ -1,7 +1,5 @@
 # Nepean Woods station - Wikipedia
 
-Coordinates: 45°16′29″N 75°42′59″W﻿ / ﻿45.27472°N 75.71639°W﻿ / 45.27472; -75.71639     
-
 **Nepean Woods station** is located in the Ottawa, Ontario, Canada suburb of Barrhaven, and is on the Southwest Transitway which is served by OC Transpo buses. Located near the intersection of Woodroffe Avenue and Strandherd Drive in southern Nepean, it was the westerly terminus of most trips of rapid-transit route 74, formerly numbered route 94. It is also the site of a park and ride lot for residents of Barrhaven, which opened on 24 February 2014. 
 
 In 2014, selected trips on route 74 (then 94) were extended to/from Riverview Station via the then-newly opened Vimy Memorial Bridge. Route 99 has selected trips extended via the bridge and Nepean Woods Station to/from Barrhaven Centre Station. In 2024, in anticipation of the opening of Line 2, Route 74 was extended to terminate at Limebank station, connecting it to the new line. 

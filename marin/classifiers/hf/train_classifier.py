@@ -12,9 +12,7 @@ import datasets
 import evaluate
 import fsspec
 import numpy as np
-import ray
 import torch
-import torch_xla.distributed.xla_multiprocessing as xmp
 from sklearn.metrics import classification_report, confusion_matrix
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments, set_seed
 
@@ -47,6 +45,8 @@ class HFTrainingConfig:
     eval_steps: int = field(default=200, metadata={"help": "Number of evaluation steps"})
     save_steps: int = field(default=200, metadata={"help": "Number of save steps"})
     logging_steps: int = field(default=50, metadata={"help": "Number of logging steps"})
+    per_device_train_batch_size: int = field(default=128, metadata={"help": "Batch size per device"})
+    run_name: str = field(default="", metadata={"help": "Name of the run"})
 
 
 class DataCollator:
@@ -94,11 +94,17 @@ def compute_metrics(eval_pred):
     print("Validation Report:\n" + report)
     print("Confusion Matrix:\n" + str(cm))
 
+    import wandb
+
+    # TODO(chris): Make this dynamic?
+    class_names = ["0", "1", "2", "3", "4", "5"]
+
     return {
         "precision": precision,
         "recall": recall,
         "f1_macro": f1,
         "accuracy": accuracy,
+        "conf_mat": wandb.plot.confusion_matrix(probs=None, y_true=labels, preds=preds, class_names=class_names),
     }
 
 
@@ -128,7 +134,7 @@ def train_classifier(rank: int, hf_script_args: HFTrainingConfig, train_dataset,
         output_dir=hf_script_args.output_dir,
         tpu_num_cores=hf_script_args.tpu_num_cores,
         remove_unused_columns=False,
-        per_device_train_batch_size=128,
+        per_device_train_batch_size=hf_script_args.per_device_train_batch_size,
         # NOTE(chris): gradient accumulation steps actually slow down training A LOT for TPUs
         # gradient_accumulation_steps=16,
         report_to="wandb",
@@ -140,6 +146,7 @@ def train_classifier(rank: int, hf_script_args: HFTrainingConfig, train_dataset,
         load_best_model_at_end=True,
         metric_for_best_model="f1_macro",
         greater_is_better=True,
+        run_name=hf_script_args.run_name,
     )
 
     set_seed(args.seed)
@@ -167,10 +174,3 @@ def train_classifier(rank: int, hf_script_args: HFTrainingConfig, train_dataset,
             model.cpu().save_pretrained(temp_dir)
             tokenizer.save_pretrained(temp_dir)
             upload_to_gcs(temp_dir, args.output_dir)
-
-
-@ray.remote(resources={"TPU": 8, "TPU-v6e-8-head": 1})
-def train_classifier_distributed(config: HFTrainingConfig):
-    dataset = load_dataset(config.train_dataset, "train")
-    dataset = dataset.train_test_split(train_size=config.train_size, seed=42)
-    xmp.spawn(train_classifier, args=(config, dataset["train"], dataset["test"]))

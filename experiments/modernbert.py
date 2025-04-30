@@ -1,10 +1,12 @@
 # Requires transformers>=4.48.0
 
+import types
+
 import ray
 import torch
 import torch_xla.core.xla_model as xm
 import transformers
-from torch_xla.experimental.custom_kernel import flash_attention_xla
+from torch_xla.experimental.custom_kernel import flash_attention
 from transformers import AutoTokenizer, ModernBertForSequenceClassification
 from transformers.models.modernbert.modular_modernbert import apply_rotary_pos_emb
 
@@ -28,7 +30,7 @@ def eager_attention_forward(
     # query, key, value: [batch_size, heads, seq_len, head_dim]
     query, key = apply_rotary_pos_emb(query, key, cos, sin)
 
-    # scale = self.head_dim**-0.5
+    scale = module.head_dim**-0.5
     # attn_weights = torch.matmul(query, key.transpose(2, 3)) * scale
 
     if local_attention != (-1, -1):
@@ -40,11 +42,10 @@ def eager_attention_forward(
     # attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)
     # attn_weights = nn.functional.dropout(attn_weights, p=self.attention_dropout, training=False)
     # attn_output = torch.matmul(attn_weights, value)
-    attn_output = flash_attention_xla(query, key, value, False)
+    attn_output = flash_attention(query, key, value, False, None, None, scale, ab=attention_mask)
     attn_output = attn_output.transpose(1, 2).contiguous()
     attn_output = attn_output.view(bs, -1, dim)
     if output_attentions:
-        scale = module.head_dim**-0.5
         attn_weights = torch.matmul(query, key.transpose(2, 3)) * scale
         attn_weights = attn_weights + attention_mask
         return (attn_output, attn_weights)
@@ -64,10 +65,7 @@ def forward(
     qkv = self.Wqkv(hidden_states)
 
     bs = hidden_states.shape[0]
-    if self.config._attn_implementation == "flash_attention_2":
-        qkv = qkv.view(-1, 3, self.num_heads, self.head_dim)
-    else:
-        qkv = qkv.view(bs, -1, 3, self.num_heads, self.head_dim)
+    qkv = qkv.view(bs, -1, 3, self.num_heads, self.head_dim)
 
     attn_outputs = eager_attention_forward(
         self,
@@ -104,10 +102,9 @@ def run_modernbert_attention():
     batch_dict = tokenizer(input_texts, max_length=8192, padding=True, truncation=True, return_tensors="pt")
     batch_dict = batch_dict.to(device)
     attention_mask, sliding_window_mask = model.model._update_attention_mask(
-        batch_dict["attention_mask"], output_attentions=True
+        batch_dict["attention_mask"], output_attentions=False
     )
 
-    print(batch_dict)
     embeddings = model.model.embeddings(batch_dict["input_ids"])
     ref_attn_output = first_layer.attn(
         first_layer.attn_norm(embeddings),
@@ -119,16 +116,8 @@ def run_modernbert_attention():
         output_attentions=False,
     )
 
-    patched_model = ModernBertForSequenceClassification.from_pretrained(
-        "Alibaba-NLP/gte-modernbert-base", reference_compile=False, num_labels=1
-    ).to(device)
-    patched_model.eval()
-
-    # patched_model.model.layers[0].attn.forward = forward
-    transformers.models.modernbert.modeling_modernbert.ModernBertAttention.forward = forward
-
-    patched_attn_output = patched_model.model.layers[0].attn(
-        patched_model.model.layers[0].attn_norm(embeddings),
+    sliding_window_ref_attn_output = model.model.layers[1].attn(
+        model.model.layers[1].attn_norm(embeddings),
         attention_mask=attention_mask,
         sliding_window_mask=sliding_window_mask,
         position_ids=torch.arange(embeddings.shape[1], device=embeddings.device).unsqueeze(0),
@@ -136,11 +125,93 @@ def run_modernbert_attention():
         max_seqlen=None,
         output_attentions=False,
     )
+    print(sliding_window_ref_attn_output[0])
+    ref_model_output = model(**batch_dict).logits
+    print(ref_model_output)
 
-    all_close = torch.allclose(ref_attn_output[0], patched_attn_output[0]), "Attention output mismatch"
+    # transformers.models.modernbert.modeling_modernbert.ModernBertAttention.forward = forward
+
+    patched_model = ModernBertForSequenceClassification.from_pretrained(
+        "Alibaba-NLP/gte-modernbert-base", reference_compile=False, num_labels=1
+    ).to(device)
+    patched_model.eval()
+
+    for layer in patched_model.model.layers:
+        layer.attn.forward = types.MethodType(forward, layer.attn)
+
+    patched_model.classifier.bias = model.classifier.bias
+    patched_model.classifier.weight = model.classifier.weight
+    patched_model.head.dense.weight = model.head.dense.weight
+    patched_model.head.norm.weight = model.head.norm.weight
+
+    # patched_model.model.layers[0].attn.forward = forward
+
+    # patched_attn_output = patched_model.model.layers[0].attn(
+    #     patched_model.model.layers[0].attn_norm(embeddings),
+    #     attention_mask=attention_mask,
+    #     sliding_window_mask=sliding_window_mask,
+    #     position_ids=torch.arange(embeddings.shape[1], device=embeddings.device).unsqueeze(0),
+    #     cu_seqlens=None,
+    #     max_seqlen=None,
+    #     output_attentions=False,
+    # )
+
+    # sliding_window_patched_attn_output = patched_model.model.layers[1].attn(
+    #     patched_model.model.layers[1].attn_norm(embeddings),
+    #     attention_mask=attention_mask,
+    #     sliding_window_mask=sliding_window_mask,
+    #     position_ids=torch.arange(embeddings.shape[1], device=embeddings.device).unsqueeze(0),
+    #     cu_seqlens=None,
+    #     max_seqlen=None,
+    #     output_attentions=False,
+    # )
+    # print(sliding_window_patched_attn_output[0])
+
+    # Start with embeddings
+    ref_hidden = embeddings.clone()
+    patched_hidden = embeddings.clone()
+    for i in range(len(model.model.layers)):
+        ref_layer = model.model.layers[i]
+        patched_layer = patched_model.model.layers[i]
+        ref_hidden = ref_layer(
+            ref_hidden,
+            attention_mask=attention_mask,
+            sliding_window_mask=sliding_window_mask,
+            position_ids=torch.arange(embeddings.shape[1], device=embeddings.device).unsqueeze(0),
+        )[0]
+        patched_hidden = patched_layer(
+            patched_hidden,
+            attention_mask=attention_mask,
+            sliding_window_mask=sliding_window_mask,
+            position_ids=torch.arange(embeddings.shape[1], device=embeddings.device).unsqueeze(0),
+        )[0]
+        if not torch.allclose(ref_hidden, patched_hidden, atol=1e-5):
+            print(f"Hidden states differ at layer {i}")
+            break
+
+    patched_model_output = patched_model(**batch_dict).logits
+    print(patched_model_output)
+
+    # all_close = torch.allclose(ref_attn_output[0], patched_attn_output[0])
+    # if not all_close:
+    #     print(f"Max diff: {torch.max(torch.abs(ref_attn_output[0] - patched_attn_output[0]))}")
+    #     print(f"Mean diff: {torch.mean(torch.abs(ref_attn_output[0] - patched_attn_output[0]))}")
+    # else:
+    #     print("Attention output matches")
+
+    # all_close = torch.allclose(sliding_window_ref_attn_output[0], sliding_window_patched_attn_output[0])
+    # if not all_close:
+    #     print(f"Max diff: {torch.max(torch.abs(sliding_window_ref_attn_output[0] - sliding_window_patched_attn_output[0]))}")
+    #     print(f"Mean diff: {torch.mean(torch.abs(sliding_window_ref_attn_output[0] - sliding_window_patched_attn_output[0]))}")
+    # else:
+    #     print("Sliding window attention output matches")
+
+    all_close = torch.allclose(ref_model_output, patched_model_output)
     if not all_close:
-        print(f"Max diff: {torch.max(torch.abs(ref_attn_output[0] - patched_attn_output[0]))}")
-        print(f"Mean diff: {torch.mean(torch.abs(ref_attn_output[0] - patched_attn_output[0]))}")
+        print(f"Max diff: {torch.max(torch.abs(ref_model_output - patched_model_output))}")
+        print(f"Mean diff: {torch.mean(torch.abs(ref_model_output - patched_model_output))}")
+    else:
+        print("Model output matches")
 
     # print(ref_attn_output[1].shape)
     # print(patched_attn_output[1].shape)

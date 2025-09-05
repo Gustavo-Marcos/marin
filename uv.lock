@@ -3395,13 +3395,12 @@ wheels = [
 
 [[package]]
 name = "dolma"
-version = "1.2.1"
-source = { registry = "https://pypi.org/simple" }
+version = "1.2.0"
+source = { git = "https://github.com/marin-community/dolma#c53fe813f432a9bae4b3b07722db6f747e460e74" }
 dependencies = [
     { name = "anyascii" },
     { name = "blingfire" },
     { name = "boto3" },
-    { name = "charset-normalizer" },
     { name = "fasttext-wheel" },
     { name = "fsspec" },
     { name = "jq" },
@@ -3409,8 +3408,6 @@ dependencies = [
     { name = "msgspec" },
     { name = "necessary" },
     { name = "nltk" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-cuda12') or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-crawl' and extra == 'extra-5-marin-download-transform') or (extra == 'extra-5-marin-crawl' and extra == 'extra-5-marin-post-training') or (extra == 'extra-5-marin-crawl' and extra == 'group-5-marin-dev') or (extra == 'extra-5-marin-crawl' and extra == 'group-5-marin-transform-test-deps') or (extra == 'extra-5-marin-cuda12' and extra == 'extra-5-marin-tpu')" },
-    { name = "numpy", version = "2.3.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-cuda12') or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-crawl' and extra == 'extra-5-marin-download-transform') or (extra == 'extra-5-marin-crawl' and extra == 'extra-5-marin-post-training') or (extra == 'extra-5-marin-crawl' and extra == 'group-5-marin-dev') or (extra == 'extra-5-marin-crawl' and extra == 'group-5-marin-transform-test-deps') or (extra == 'extra-5-marin-cuda12' and extra == 'extra-5-marin-tpu')" },
     { name = "omegaconf" },
     { name = "platformdirs" },
     { name = "python-dotenv" },
@@ -3423,35 +3420,6 @@ dependencies = [
     { name = "tqdm" },
     { name = "uniseg" },
     { name = "zstandard" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/10/4f/197f8ea436c5e0a2c2cc6f63c6e7f4342bcabbe6743be6a82d2c4d9ba76f/dolma-1.2.1.tar.gz", hash = "sha256:23eb2511312befd48905b29a21a5e19cc2914f34e641e9904d9d97d583387c94", size = 16997507, upload-time = "2025-07-07T16:02:18.301Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/b1/0d/6f1a20e5c9b32492a97c1de37e94ee30b4665bf12fecc079175bba3f808d/dolma-1.2.1-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:f562c2f0d5e61fdf84d4d435ccbae7881c93c05f33444c939e9fe2394b460f58", size = 7749574, upload-time = "2025-07-07T16:02:52.222Z" },
-    { url = "https://files.pythonhosted.org/packages/60/11/31e38c919c7b116a34a84e1c0609af5998304770fdcfe65c1f107c9cd14c/dolma-1.2.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:67eea850a6e225377b9411511e4da039c44adea4b9efbd23f51e54ed702fd421", size = 7442247, upload-time = "2025-07-07T16:02:45.762Z" },
-    { url = "https://files.pythonhosted.org/packages/01/ad/6ddf6db0a8f4701672594720254d2694685f5ded1c6871b821aa5e5da298/dolma-1.2.1-cp310-cp310-manylinux_2_28_aarch64.whl", hash = "sha256:4a7d8fc9c02df130962d0d207a3429d1d1845d85f2c95bb870c5c6442f00a046", size = 8293777, upload-time = "2025-07-07T16:02:21.67Z" },
-    { url = "https://files.pythonhosted.org/packages/ab/7f/b0213216fad28e49c56a0bad6b5dd15cbc5fab2e954429c9df13bd7c3d78/dolma-1.2.1-cp310-cp310-manylinux_2_28_armv7l.whl", hash = "sha256:3f822316d8e47486bf65d32a1020b5703e439cf5edc1a37310974af97f759544", size = 7914370, upload-time = "2025-07-07T16:02:30.209Z" },
-    { url = "https://files.pythonhosted.org/packages/b3/86/9ba2304e1b35ec9b6f39469b5d511b07c8ae9999013b05fe8c98e5d03119/dolma-1.2.1-cp310-cp310-manylinux_2_28_x86_64.whl", hash = "sha256:31f596117693160b58f76cedd3020079073ee0b03617b42a9df98d44ff445ab3", size = 8450079, upload-time = "2025-07-07T16:02:38.258Z" },
-    { url = "https://files.pythonhosted.org/packages/6d/09/2fb406cc2da98a13e864bea2971a76ec9ef049e9773340dc91eb1b014723/dolma-1.2.1-cp310-cp310-win32.whl", hash = "sha256:2584034f10946851c64540b3f6893e46a77974ed8cec02c147b610f42c948205", size = 5932039, upload-time = "2025-07-07T16:03:01.592Z" },
-    { url = "https://files.pythonhosted.org/packages/1a/64/5dadc20f6755c9cbe79a14a170c4c34c30fab4bf68730c491759c8372f00/dolma-1.2.1-cp310-cp310-win_amd64.whl", hash = "sha256:159baa823be057bcc2c132384bde395d548635835c8d180be83cc2982f4fcdc4", size = 6618538, upload-time = "2025-07-07T16:02:56.616Z" },
-    { url = "https://files.pythonhosted.org/packages/07/87/a2993e84442ff21a1a1b62519d48d44bb079133d4e50d0e611cb205f2812/dolma-1.2.1-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:f9bd9a3192a92585415c22a1a434ecb939432e2b6d856215202f20c5e4bc9aa0", size = 7749619, upload-time = "2025-07-07T16:02:53.65Z" },
-    { url = "https://files.pythonhosted.org/packages/73/a0/9a8ca2cec7c469fa42d59b9acdc6c11f7e71cca60d9efb779e1d84571f8a/dolma-1.2.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:e6779140586f0c72d30af2f1181be32a5b739f1664e006bbb1c79b4d02e69fee", size = 7442413, upload-time = "2025-07-07T16:02:47.515Z" },
-    { url = "https://files.pythonhosted.org/packages/e4/5d/487192841e71e408d3285aadbfc013e97cc05642a2a197cd065837452f92/dolma-1.2.1-cp311-cp311-manylinux_2_28_aarch64.whl", hash = "sha256:af12bfacf36f3941de98fb420ccef38bad41ea69eaab08347e6d77710120e21f", size = 8293740, upload-time = "2025-07-07T16:02:23.255Z" },
-    { url = "https://files.pythonhosted.org/packages/b1/4d/80d271359ced40d44cae83c269f8d1d995383dc4bb8988cb9ced12b5ce43/dolma-1.2.1-cp311-cp311-manylinux_2_28_armv7l.whl", hash = "sha256:fca44c2b248657969bf936734ad76213d94dde335639d34ba66f364036c9109d", size = 7914266, upload-time = "2025-07-07T16:02:32.074Z" },
-    { url = "https://files.pythonhosted.org/packages/12/af/b9249b535ba984f343533dd0067a8d9c79615bf6f53e88f6cf9244e1e155/dolma-1.2.1-cp311-cp311-manylinux_2_28_x86_64.whl", hash = "sha256:81138b1072f1f2398d592e3a415e0133b7b056336851681509e3c6b2eac1109e", size = 8449938, upload-time = "2025-07-07T16:02:40.248Z" },
-    { url = "https://files.pythonhosted.org/packages/d0/0e/295524de8e9c4e3b1c4d2cfe79091438e411ec6041a21b4493867671c1f4/dolma-1.2.1-cp311-cp311-win32.whl", hash = "sha256:b4ea2c5fecb501b194ea494ea902fe6408095317449358afc4efb2269d1c2b91", size = 5932041, upload-time = "2025-07-07T16:03:03.055Z" },
-    { url = "https://files.pythonhosted.org/packages/13/39/ca947f1d43efe6ffafdc9da1f0399f1132ebee7454f0a142a5f8f2d701e8/dolma-1.2.1-cp311-cp311-win_amd64.whl", hash = "sha256:0edee454e5c683c5dfdbf2cf604afdc92d01942971efdcc3e8051998dc83f452", size = 6618527, upload-time = "2025-07-07T16:02:58.364Z" },
-    { url = "https://files.pythonhosted.org/packages/b3/bb/6cc6abce8e00948986e546552077888f69469d45765984f1248b25c7bf60/dolma-1.2.1-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:5937a9baab71057814b26c5ef450b039fbdf566068d64a25e444fb3ec45dba4c", size = 7752890, upload-time = "2025-07-07T16:02:55.119Z" },
-    { url = "https://files.pythonhosted.org/packages/0d/6c/8e9d77606a59a0d388c870f7c99e0cdfddb63db43314990529ea3fc464eb/dolma-1.2.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:48a8b7bc81b1a23fd585b8262dc52568cfe14937db97be675e30b357cd08e00d", size = 7439626, upload-time = "2025-07-07T16:02:49.071Z" },
-    { url = "https://files.pythonhosted.org/packages/e3/7c/90d33234eae6d44fb52df1e966591a1204042d32544311c3c31c69a0fab3/dolma-1.2.1-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:fb2985c37dcdbb8443ea16e27f80dfd60d45b9ebe64f034bff79d04ba81a6c8a", size = 8298609, upload-time = "2025-07-07T16:02:25.066Z" },
-    { url = "https://files.pythonhosted.org/packages/b1/63/96d45b21a4418bd16198df4f6546ff6cc1bb1aae2d8464d56e0557796ad8/dolma-1.2.1-cp312-cp312-manylinux_2_28_armv7l.whl", hash = "sha256:af3d507583a3457185da324674ea79b78a0d14a2fc7bf2e92ac118565b9ccb6b", size = 7914570, upload-time = "2025-07-07T16:02:33.496Z" },
-    { url = "https://files.pythonhosted.org/packages/87/da/24d61448aaf8a54b5967ccfe5b58384ca6ace7d1ea4c71fbb0ea0f5974e8/dolma-1.2.1-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:71bd4615d165df8e6206342d522ec8fb1091dd89f045cfe805d882e633e0a1cb", size = 8451890, upload-time = "2025-07-07T16:02:41.963Z" },
-    { url = "https://files.pythonhosted.org/packages/ee/1d/7d8f86fb998102acd904043a075637583ba4452aed20e26663401bcd6a3b/dolma-1.2.1-cp312-cp312-win32.whl", hash = "sha256:4833da02f5c051a86466676a3b61e715ad314e0efe4a1b6b812c70fe55bd044d", size = 5931415, upload-time = "2025-07-07T16:03:04.873Z" },
-    { url = "https://files.pythonhosted.org/packages/cf/f6/3b58a2001f1b5390db6405bfc9e9a6a4cbde61c94d4ee3c8a95ff76fec77/dolma-1.2.1-cp312-cp312-win_amd64.whl", hash = "sha256:a6a0ea7c22663aacc68819d3be667d2775f17ce8687d44f7ed6da81db2de8077", size = 6617551, upload-time = "2025-07-07T16:02:59.883Z" },
-    { url = "https://files.pythonhosted.org/packages/68/4d/90c0624e0c80b1392eebb985fea6d6d2227daf60b543fcb328360c712f72/dolma-1.2.1-pp310-pypy310_pp73-manylinux_2_28_aarch64.whl", hash = "sha256:7a57abf8216cd5eb40541f6d03e747a576ab3d8d59c86ad385d71a04ebbb6c26", size = 8293616, upload-time = "2025-07-07T16:02:27.045Z" },
-    { url = "https://files.pythonhosted.org/packages/32/e5/544f8eb49faa8ad48aa1fba00088f30512018b441d3cb2c46eadd9dc2d86/dolma-1.2.1-pp310-pypy310_pp73-manylinux_2_28_armv7l.whl", hash = "sha256:1a8e01adab7acf94b228b1284aba679cf2eadfd05512529bdcbe4e551db93b90", size = 7913607, upload-time = "2025-07-07T16:02:34.994Z" },
-    { url = "https://files.pythonhosted.org/packages/e1/17/e08ee7f23ca26e5b710147861f695de4cf05738adf85e97e17855fec381e/dolma-1.2.1-pp310-pypy310_pp73-manylinux_2_28_x86_64.whl", hash = "sha256:127920f3308369697df1a57f2005aa4507beb510ec3335838bcfd5f2143f03b6", size = 8448462, upload-time = "2025-07-07T16:02:43.679Z" },
-    { url = "https://files.pythonhosted.org/packages/eb/b0/ba0119b5d096bf60f24095d57efe3f9048a958e9257a9300bdc6e244f9b7/dolma-1.2.1-pp311-pypy311_pp73-manylinux_2_28_aarch64.whl", hash = "sha256:664f251ca260b123caaccb4d64d5615cbcb4af2e77876b6f54a53f79a97d6fec", size = 8293713, upload-time = "2025-07-07T16:02:28.684Z" },
-    { url = "https://files.pythonhosted.org/packages/98/95/fc395051a0957175a39e9d3aeb4888a54a28e2dd882200f381e17188c535/dolma-1.2.1-pp311-pypy311_pp73-manylinux_2_28_armv7l.whl", hash = "sha256:795d7d2ac5d1d5d916c0aede85a2a30b972d14231888bb7dd35c67a28319649a", size = 7913719, upload-time = "2025-07-07T16:02:36.637Z" },
 ]
 
 [[package]]
@@ -7753,7 +7721,7 @@ requires-dist = [
     { name = "datatrove", extras = ["io"], marker = "extra == 'crawl'", git = "https://github.com/nelson-liu/datatrove?rev=ray_executor_dedup_logging" },
     { name = "datatrove", extras = ["processing"], marker = "extra == 'crawl'", git = "https://github.com/nelson-liu/datatrove?rev=ray_executor_dedup_logging" },
     { name = "deepdiff" },
-    { name = "dolma", specifier = ">=1.2.0" },
+    { name = "dolma", git = "https://github.com/marin-community/dolma" },
     { name = "draccus", specifier = ">=0.11.5" },
     { name = "einops", marker = "extra == 'post-training'" },
     { name = "fasteners", specifier = ">=0.19" },

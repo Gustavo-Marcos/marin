@@ -14,6 +14,6 @@
 
 from marin.rl.types import InferenceContext, InferenceResponse
 
-from .base import MarinEnv, load_environment_from_spec
+from .base import EnvConfig, MarinEnv, load_environment_from_spec
 
-__all__ = ["InferenceContext", "InferenceResponse", "MarinEnv", "load_environment_from_spec"]
+__all__ = ["EnvConfig", "InferenceContext", "InferenceResponse", "MarinEnv", "load_environment_from_spec"]

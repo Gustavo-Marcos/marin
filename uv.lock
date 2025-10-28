@@ -3732,8 +3732,8 @@ name = "beautifulsoup4"
 version = "4.14.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "soupsieve" },
-    { name = "typing-extensions" },
+    { name = "soupsieve", marker = "(sys_platform != 'darwin' and extra == 'extra-5-marin-post-training') or (sys_platform == 'darwin' and extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (sys_platform == 'darwin' and extra == 'extra-5-marin-cpu' and extra == 'group-5-marin-dev') or (sys_platform == 'darwin' and extra == 'extra-5-marin-cpu' and extra == 'group-5-marin-transform-test-deps') or (sys_platform == 'darwin' and extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or extra == 'extra-5-marin-crawl' or extra == 'extra-5-marin-download-transform' or (extra == 'extra-5-marin-cuda12' and extra == 'group-5-marin-dev') or (extra == 'extra-5-marin-cuda12' and extra == 'group-5-marin-transform-test-deps') or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-cuda12') or (extra == 'extra-5-marin-cuda12' and extra == 'extra-5-marin-post-training') or (extra == 'extra-5-marin-cuda12' and extra == 'extra-5-marin-tpu') or (extra != 'extra-5-marin-post-training' and extra == 'group-5-marin-dev') or (extra != 'extra-5-marin-post-training' and extra == 'group-5-marin-transform-test-deps') or (extra == 'extra-5-marin-cpu' and extra != 'extra-5-marin-post-training' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-cuda12' and extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra == 'extra-5-marin-eval' and extra != 'extra-5-marin-post-training' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu' and extra == 'group-5-marin-dev') or (extra != 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu' and extra == 'group-5-marin-transform-test-deps') or (extra != 'extra-5-marin-cpu' and extra == 'extra-5-marin-post-training' and extra != 'extra-5-marin-tpu')" },
+    { name = "typing-extensions", marker = "(sys_platform != 'darwin' and extra == 'extra-5-marin-post-training') or (sys_platform == 'darwin' and extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (sys_platform == 'darwin' and extra == 'extra-5-marin-cpu' and extra == 'group-5-marin-dev') or (sys_platform == 'darwin' and extra == 'extra-5-marin-cpu' and extra == 'group-5-marin-transform-test-deps') or (sys_platform == 'darwin' and extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or extra == 'extra-5-marin-crawl' or extra == 'extra-5-marin-download-transform' or (extra == 'extra-5-marin-cuda12' and extra == 'group-5-marin-dev') or (extra == 'extra-5-marin-cuda12' and extra == 'group-5-marin-transform-test-deps') or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-cuda12') or (extra == 'extra-5-marin-cuda12' and extra == 'extra-5-marin-post-training') or (extra == 'extra-5-marin-cuda12' and extra == 'extra-5-marin-tpu') or (extra != 'extra-5-marin-post-training' and extra == 'group-5-marin-dev') or (extra != 'extra-5-marin-post-training' and extra == 'group-5-marin-transform-test-deps') or (extra == 'extra-5-marin-cpu' and extra != 'extra-5-marin-post-training' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-cuda12' and extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra == 'extra-5-marin-eval' and extra != 'extra-5-marin-post-training' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu' and extra == 'group-5-marin-dev') or (extra != 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu' and extra == 'group-5-marin-transform-test-deps') or (extra != 'extra-5-marin-cpu' and extra == 'extra-5-marin-post-training' and extra != 'extra-5-marin-tpu')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/77/e9/df2358efd7659577435e2177bfa69cba6c33216681af51a707193dec162a/beautifulsoup4-4.14.2.tar.gz", hash = "sha256:2a98ab9f944a11acee9cc848508ec28d9228abfd522ef0fad6a02a72e0ded69e", size = 625822, upload-time = "2025-09-29T10:05:42.613Z" }
 wheels = [
@@ -4841,8 +4841,8 @@ version = "7.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pywin32", marker = "sys_platform == 'win32' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-cuda12') or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-cuda12' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate')" },
-    { name = "requests" },
-    { name = "urllib3" },
+    { name = "requests", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "urllib3", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/91/9b/4a2ea29aeba62471211598dac5d96825bb49348fa07e906ea930394a83ce/docker-7.1.0.tar.gz", hash = "sha256:ad8c70e6e3f8926cb8a92619b832b4ea5299e2831c14284663184e200546fa6c", size = 117834, upload-time = "2024-05-23T11:13:57.216Z" }
 wheels = [
@@ -5013,7 +5013,7 @@ name = "fastcore"
 version = "1.8.13"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "packaging" },
+    { name = "packaging", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/6a/52/20a2e735ba2e9ba85504844ffa66dd073f7c13875596b7cb5d7acb5bc149/fastcore-1.8.13.tar.gz", hash = "sha256:e694ced1be763d7dce1b6a7adcdaff4ac7564e7f82bee5a06b640f420bd5394c", size = 81362, upload-time = "2025-10-17T02:53:24.78Z" }
 wheels = [
@@ -5477,8 +5477,8 @@ name = "ghapi"
 version = "1.0.8"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "fastcore" },
-    { name = "packaging" },
+    { name = "fastcore", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "packaging", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/13/45/714e944ca610758c5fd7cece1aea366fb88e318983d6a8e52857598b5b09/ghapi-1.0.8.tar.gz", hash = "sha256:9ab02dcd06b3c622ea2d9b21a2efee316076a744ce7847251a2fe9f542f381df", size = 72049, upload-time = "2025-09-16T23:57:48.847Z" }
 wheels = [
@@ -5888,8 +5888,8 @@ name = "grpclib"
 version = "0.4.8"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "h2" },
-    { name = "multidict" },
+    { name = "h2", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "multidict", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/19/75/0f0d3524b38b35e5cd07334b754aa9bd0570140ad982131b04ebfa3b0374/grpclib-0.4.8.tar.gz", hash = "sha256:d8823763780ef94fed8b2c562f7485cf0bbee15fc7d065a640673667f7719c9a", size = 62793, upload-time = "2025-05-04T16:27:30.051Z" }
 wheels = [
@@ -5910,8 +5910,8 @@ name = "h2"
 version = "4.3.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "hpack" },
-    { name = "hyperframe" },
+    { name = "hpack", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "hyperframe", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/1d/17/afa56379f94ad0fe8defd37d6eb3f89a25404ffc71d4d848893d270325fc/h2-4.3.0.tar.gz", hash = "sha256:6c59efe4323fa18b47a632221a1888bd7fde6249819beda254aeca909f221bf1", size = 2152026, upload-time = "2025-08-23T18:12:19.778Z" }
 wheels = [
@@ -7390,7 +7390,7 @@ requires-dist = [
     { name = "transformers", marker = "extra == 'post-training'" },
     { name = "transformers", marker = "extra == 'quality-dedup-consolidate'" },
     { name = "tyro", marker = "extra == 'post-training'", specifier = "==0.8.11" },
-    { name = "verifiers", marker = "extra == 'rl'" },
+    { name = "verifiers", marker = "extra == 'rl'", specifier = "==0.1.5" },
     { name = "w3lib", marker = "extra == 'crawl'" },
     { name = "wandb" },
     { name = "wandb", marker = "extra == 'post-training'" },
@@ -8033,20 +8033,20 @@ name = "modal"
 version = "1.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "aiohttp" },
-    { name = "cbor2" },
-    { name = "certifi" },
-    { name = "click" },
-    { name = "grpclib" },
-    { name = "protobuf" },
-    { name = "rich" },
-    { name = "synchronicity" },
-    { name = "toml" },
-    { name = "typer" },
-    { name = "types-certifi" },
-    { name = "types-toml" },
-    { name = "typing-extensions" },
-    { name = "watchfiles" },
+    { name = "aiohttp", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "cbor2", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "certifi", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "click", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "grpclib", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "protobuf", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "rich", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "synchronicity", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "toml", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "typer", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "types-certifi", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "types-toml", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "typing-extensions", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "watchfiles", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/fd/b9/29a4f2a9d58dd3c2579fd7ec8dc609dc91da4e32d9642bacf6c972426bdb/modal-1.2.0.tar.gz", hash = "sha256:4abb2ddd6f8d4ecbab50a3094094d280a2ecf1f0e67ab3e1fcdf0d56bd97d5f9", size = 624784, upload-time = "2025-10-09T21:53:24.927Z" }
 wheels = [
@@ -11362,7 +11362,7 @@ wheels = [
 
 [[package]]
 name = "prime"
-version = "0.4.4"
+version = "0.4.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "build" },
@@ -11374,7 +11374,7 @@ dependencies = [
     { name = "verifiers" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fa/04/7d8c669da9a5c5a2ec0c945b9fd1ee07b81ba1427ee29a76cfedb013e0e4/prime-0.4.4-py3-none-any.whl", hash = "sha256:f26cb7ee3b4b2706ec452e88ed6b419f6f99a18665f910f45a2b137b68078e5c", size = 60648, upload-time = "2025-10-13T05:51:35.273Z" },
+    { url = "https://files.pythonhosted.org/packages/93/35/a6cec89334d2e390dc020832b6ed9f0774b68cc03c03c4fba33a6f42f4c5/prime-0.4.3-py3-none-any.whl", hash = "sha256:71ae26cad69384c8dd213baab29412f491ede407cd68c19fc7d889266b57165b", size = 60435, upload-time = "2025-10-11T00:51:46.908Z" },
 ]
 
 [[package]]
@@ -15172,7 +15172,7 @@ name = "sigtools"
 version = "4.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "attrs" },
+    { name = "attrs", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/5f/db/669ca14166814da187b3087b908ca924cf83f5b504fe23b3859a3ef67d4f/sigtools-4.0.1.tar.gz", hash = "sha256:4b8e135a9cd4d2ea00da670c093372d74e672ba3abb87f4c98d8e73dea54445c", size = 71910, upload-time = "2022-10-13T07:03:54.149Z" }
 wheels = [
@@ -15425,20 +15425,20 @@ name = "swebench"
 version = "4.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "beautifulsoup4" },
-    { name = "chardet" },
-    { name = "datasets" },
-    { name = "docker" },
-    { name = "ghapi" },
-    { name = "gitpython" },
-    { name = "modal" },
-    { name = "pre-commit" },
-    { name = "python-dotenv" },
-    { name = "requests" },
-    { name = "rich" },
-    { name = "tenacity" },
-    { name = "tqdm" },
-    { name = "unidiff" },
+    { name = "beautifulsoup4", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "chardet", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "datasets", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "docker", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "ghapi", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "gitpython", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "modal", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "pre-commit", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "python-dotenv", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "requests", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "rich", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "tenacity", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "tqdm", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "unidiff", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/24/e1/c997299ad7bf088876d30398203aa1eed7dec897670dc1aa35b1d748ffcc/swebench-4.1.0.tar.gz", hash = "sha256:5aaa6a92c2db1aa64892d28a47483ca46a45a15cf1d2df673d7744f71811dc9a", size = 134341, upload-time = "2025-09-11T02:58:00.447Z" }
 wheels = [
@@ -15462,8 +15462,8 @@ name = "synchronicity"
 version = "0.10.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "sigtools" },
-    { name = "typing-extensions" },
+    { name = "sigtools", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
+    { name = "typing-extensions", marker = "sys_platform != 'darwin' or extra == 'extra-5-marin-cuda12' or (extra == 'extra-5-marin-cpu' and extra == 'extra-5-marin-tpu') or (extra == 'extra-5-marin-eval' and extra == 'extra-5-marin-quality-dedup-consolidate') or (extra != 'extra-5-marin-cpu' and extra != 'extra-5-marin-tpu')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/77/b6/e977f03915cc02406bb52ac15398ea44dbde47805e5955b6bac9268acc12/synchronicity-0.10.2.tar.gz", hash = "sha256:e0dfd8a2ba4fb89c60ee53365c5fa2d2d69aabce60709055d38f736f6a592c86", size = 53891, upload-time = "2025-07-30T20:23:19.122Z" }
 wheels = [
@@ -18168,7 +18168,7 @@ wheels = [
 
 [[package]]
 name = "verifiers"
-version = "0.1.5.post0"
+version = "0.1.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "datasets" },
@@ -18176,15 +18176,14 @@ dependencies = [
     { name = "nest-asyncio" },
     { name = "openai" },
     { name = "openai-agents" },
-    { name = "prime-sandboxes" },
     { name = "pydantic" },
     { name = "requests" },
     { name = "rich" },
     { name = "textual" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cf/98/240e5a7ce91f774564c45dc4518a98c92808eccb2ba761725697a3788ec1/verifiers-0.1.5.post0.tar.gz", hash = "sha256:d4b4b4739fe2c4ea3f52fec013c526e232192dff1dae1f68fb89e98e293ed88d", size = 121848, upload-time = "2025-10-09T21:18:25.77Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/89/13/46d07ea2608150913f20d4400e2b7388b6ec414c3cc95e74bcfbcec7517f/verifiers-0.1.5.tar.gz", hash = "sha256:6a301b7bdaf12ef1d0fea0f265a4a144f8e27df5e9dcfc3efa7ff55befa24799", size = 121807, upload-time = "2025-10-08T22:49:23.466Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/22/30/e27d2d47ec20184f12cf684b77defafa891bfcd5737ba2a2e03031d89deb/verifiers-0.1.5.post0-py3-none-any.whl", hash = "sha256:5ffc59380115c4d1a360a6722d2e1f40e327c1fe314f82997d6f34f1e948f4c1", size = 111816, upload-time = "2025-10-09T21:18:24.753Z" },
+    { url = "https://files.pythonhosted.org/packages/16/8c/3e9c40d05a59a8e2c420af9e46c2235443d73c00270773941b175dff3f5e/verifiers-0.1.5-py3-none-any.whl", hash = "sha256:ae17e6d810eb823e27e4c9972e796d7066c492ba18e6a0301b4198c0b6868678", size = 111719, upload-time = "2025-10-08T22:49:21.977Z" },
 ]
 
 [[package]]
